@@ -1,6 +1,8 @@
 // Require the `restricted` middleware from `auth-middleware.js`. You will need it here!
+const express=require("express")
+const Users=require("./users-model")
 
-
+const {restrict}=require(".")
 /**
   [GET] /api/users
 
