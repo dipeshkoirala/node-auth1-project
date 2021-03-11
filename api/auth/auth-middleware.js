@@ -1,3 +1,4 @@
+const db=require("../users/users-model")
 /*
   If the user does not have a session saved in the server
 
@@ -7,8 +8,22 @@
   }
 */
 function restricted() {
-
+  return async (req, res, next) => {
+		try {
+			if (!req.session || !req.session.user) {
+				return res.status(403).json({
+					message: "You shall not pass",
+})
 }
+
+next()
+} catch (err) {
+next(err)
+}
+}
+}
+
+     
 
 /*
   If the username in req.body already exists in the database
@@ -19,7 +34,13 @@ function restricted() {
   }
 */
 function checkUsernameFree() {
-
+  return (req,res,next)=>{
+  const {id} = db.find()
+  }
+  
+try{
+  
+}
 }
 
 /*
@@ -47,3 +68,7 @@ function checkPasswordLength() {
 }
 
 // Don't forget to add these to the `exports` object so they can be required in other modules
+module.exports={
+  checkPasswordLength,checkUsernameExists,checkUsernameFree,restricted
+
+}
